@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gkaragoz/Network-Programming-Lecture/issues"
   },
-  "homepage": "https://github.com/gkaragoz/Network-Programming-Lecture#readme"
+  "homepage": "https://github.com/gkaragoz/Network-Programming-Lecture#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
