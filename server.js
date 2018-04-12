@@ -4,6 +4,7 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.set('view engine', 'ejs')
 
 MongoClient.connect('mongodb://127.0.0.1:27017', (err, client) => {
     if (err) return console.log(err)
@@ -18,10 +19,9 @@ MongoClient.connect('mongodb://127.0.0.1:27017', (err, client) => {
 // })
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-
     db.collection('lectures').find().toArray(function(err, results) {
-        console.log(err);
-        console.log(results);
+        if (err) return console.log(err)
+        // renders index.ejs
+        res.render('index.ejs', {content: results})
     })
 })
