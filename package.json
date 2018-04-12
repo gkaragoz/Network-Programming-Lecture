@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gkaragoz/Network-Programming-Lecture#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "ejs": "^2.5.8",
     "express": "^4.16.3",
     "mongodb": "^3.0.6"
   }
