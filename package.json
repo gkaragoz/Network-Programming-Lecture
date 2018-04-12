@@ -1,0 +1,19 @@
+{
+  "name": "network-programming-lecture",
+  "version": "1.0.0",
+  "description": "Homework-01",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gkaragoz/Network-Programming-Lecture.git"
+  },
+  "author": "Gökhan Karagöz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gkaragoz/Network-Programming-Lecture/issues"
+  },
+  "homepage": "https://github.com/gkaragoz/Network-Programming-Lecture#readme"
+}
