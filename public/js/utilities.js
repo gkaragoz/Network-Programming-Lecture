@@ -5,9 +5,10 @@ function Toggler(divId) {
 function ShowLectureContent() {
     document.location.href = "#";
     Toggler("hidden");
+    FillContent();
 }
 
-function ajaxDrop() {
+function FillContent() {
     $.ajax({
         url:"/",
         type:"POST",
@@ -16,84 +17,83 @@ function ajaxDrop() {
         },
         dataType:"json",
         success: function (data) {
-           $("#kodu").val(data.kod);
-           $("#isim").val(data.isim);
-           $("#icerik").val(data.icerik);
-           $("#drop").slideDown(500);
+           $("#code").val(data.code);
+           $("#name").val(data.name);
+           $("#content").val(data.content);
         },
-        error: function () {
-            alert("Post sırasında hata oluştu.");
+        error: function (err) {
+            alert("Error while posting: " + err.status + ":" + err.statusText);
         }
     })
 }
-function keyUPcode() {
-    var code=$("#kodu").val();
-    var name=$("#isim").val();
-    var content=$("#icerik").val();
+function OnKeyUp() {
+    var m_code=$("#code").val();
+    var m_name=$("#name").val();
+    var m_content=$("#content").val();
     $.ajax({
         url:"/",
         type:"POST",
         data:{
-            tip:"kodu",
-            kod:code,
-            isim:name,
-            icerik:content,
+            type:"code",
+            code:m_code,
+            name:m_name,
+            content:m_content,
         },
         dataType:"json",
         success: function (response) {
-            $("#derskod").html(response.kod);
+            $("#lectureCode").html(response.code);
         },
-        error: function () {
-            alert("Post sırasında hata oluştu.");
+        error: function (error) {
+            alert("Error while posting: " + error.status + ":" + error.statusText);
         }
     })
 }
-function keyUPname() {
-    var code=$("#kodu").val();
-    var name=$("#isim").val();
-    var content=$("#icerik").val();
+function OnKeyUpName() {
+    var m_code=$("#code").val();
+    var m_name=$("#name").val();
+    var m_content=$("#content").val();
     $.ajax({
         url:"/",
         type:"POST",
         data:{
-            tip:"isim",
-            kod:code,
-            isim:name,
-            icerik:content,
+            type:"name",
+            code:m_code,
+            name:m_name,
+            content:m_content,
         },
         dataType:"json",
         success: function (response) {
-            $("#ad").html(response.isim);
+            $("#lectureName").html(response.name);
         },
-        error: function () {
-            alert("Post sırasında hata oluştu.");
+        error: function (error) {
+            alert("Error while posting: " + error.status + ":" + error.statusText);
         }
     })
 }
-function keyUPcontent() {
-    var code=$("#kodu").val();
-    var name=$("#isim").val();
-    var content=$("#icerik").val();
+function OnKeyUpContent() {
+    var m_code=$("#code").val();
+    var m_name=$("#name").val();
+    var m_content=$("#content").val();
     $.ajax({
         url:"/",
         type:"POST",
         data:{
-            tip:"icerik",
-            kod:code,
-            isim:name,
-            icerik:content,
+            type:"content",
+            code:m_code,
+            name:m_name,
+            content:m_content,
         },
         dataType:"json",
         success: function () {
 
         },
-        error: function () {
-            alert("Post sırasında hata oluştu.");
+        error: function (error) {
+            alert("Error while posting: " + error.status + ":" + error.statusText);
         }
     })
 }
 
-function showJSON() {
+function ShowJSON() {
     $.ajax({
         url:"/",
         type:"POST",
@@ -102,14 +102,14 @@ function showJSON() {
         },
         dataType:"json",
         success: function (response) {
-            $("#kodlanmisVeri").html(JSON.stringify(response, null, 2));
+            $("#encodedData").html(JSON.stringify(response, null, 2));
         },
-        error: function () {
-            alert("Post sırasında hata oluştu.");
+        error: function (error) {
+            alert("Error while posting: " + error.status + ":" + error.statusText);
         }
     })
 }
-function showXML() {
+function ShowXML() {
     $.ajax({
         url:"/",
         type:"POST",
@@ -119,10 +119,10 @@ function showXML() {
         dataType:"xml",
         success: function (response) {
             var xmlText = new XMLSerializer().serializeToString(response);
-            $("#kodlanmisVeri").html(xmlText);
+            $("#encodedData").html(xmlText);
         },
-        error: function () {
-            alert("Post sırasında hata oluştu.");
+        error: function (error) {
+            alert("Error while posting: " + error.status + ":" + error.statusText);
         }
     })
 }
