@@ -32,10 +32,22 @@ app.get('/FillContent', (req, res) => {
 
 app.get('/GetJSON', (req, res) => {
 	// Get JSON
+	Lecture.getLecture(lectureID, (err, lecture) => {
+		if(err) throw err;
+
+		res.json(lecture);
+	});
 });
 
 app.get('/GetXML', (req, res) => {
 	// Get XML
+	Lecture.getLecture(lectureID, (err, lecture) => {
+		if(err) throw err;
+
+		//CONVERT JSON to XML
+
+		res.send(lecture);
+	});
 });
 
 app.put('/OnKeyUp', (req, res) => {

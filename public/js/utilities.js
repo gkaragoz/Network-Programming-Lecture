@@ -51,10 +51,7 @@ function ShowJSON() {
         type:"GET",
         dataType:"json",
         success: function (response) {
-            $("#encodedData").html(JSON.stringify(response, null, 2));
-        },
-        error: function (error) {
-            alert("Error while posting: " + error.status + ":" + error.statusText);
+            $("#encodedData").val(JSON.stringify(response, null, 2));
         }
     })
 }
@@ -66,10 +63,7 @@ function ShowXML() {
         dataType:"xml",
         success: function (response) {
             var xmlText = new XMLSerializer().serializeToString(response);
-            $("#encodedData").html(xmlText);
-        },
-        error: function (error) {
-            alert("Error while posting: " + error.status + ":" + error.statusText);
+            $("#encodedData").val(xmlText);
         }
     })
 }
