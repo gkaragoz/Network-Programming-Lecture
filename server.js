@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var path = require('path');
+var lectureID = -1;
+var studentID = "g140910034";
 
 app.use("/",express.static(path.join(__dirname, 'public')));
 app.use("/css",express.static(path.join(__dirname, '/css')));
@@ -15,13 +17,16 @@ var db = mongoose.connection;
 
 Lecture = require('./models/lecture');
 
+function SetLectureID() {
+	lectureID = parseInt(studentID[studentID.length-1]);
+}
+
 app.get('/FillContent', (req, res) => {
-	Lecture.getLecture((err, lecture) => {
-		if(err){
-			throw err;
-		}
-		console.log(JSON.stringify(lecture));
-		res.send(lecture);
+	Lecture.getLecture(lectureID, (err, lecture) => {
+		if(err) throw err;
+
+		console.log("Received data from Database: " + JSON.stringify(lecture, "", 2));
+		res.json(lecture);
 	});
 });
 
@@ -33,18 +38,21 @@ app.get('/GetXML', (req, res) => {
 	// Get XML
 });
 
-app.post('/OnKeyUpCode', (req, res) => {
-	// Post OnKeyUpCode
-});
+app.put('/OnKeyUp', (req, res) => {
+	// Put OnKeyUp
+	var lecture = req.body;
+	console.log("REQUEST: " + JSON.stringify(lecture, "", 2));
 
-app.post('/OnKeyUpName', (req, res) => {
-	// Post OnKeyUpName
+	Lecture.updateLecture(lectureID, lecture, {}, (error, response) => {
+		if(error) {
+			console.log(console.log(JSON.stringify(error)));
+			throw error;
+		}
+		console.log("updateLecture SUCCESS!");
+		res.json(response);
+	});
 });
-
-app.post('/OnKeyUpCodeContent', (req, res) => {
-	// Post OnKeyUpCodeContent
-});
-
 
 app.listen(3000);
 console.log("Server online at port:3000");
+SetLectureID();

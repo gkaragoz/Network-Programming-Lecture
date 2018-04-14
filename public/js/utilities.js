@@ -14,9 +14,9 @@ function FillContent() {
         type:"GET",
         dataType:"json",
         success: function (data) {
-           $("#code").val(data.code);
-           $("#name").val(data.name);
-           $("#content").val(data.content);
+           $("#code").val(data[0].code);
+           $("#name").val(data[0].name);
+           $("#content").val(data[0].content);
         },
         error: function (err) {
             alert("Error while posting: " + err.status + ":" + err.statusText);
@@ -26,13 +26,13 @@ function FillContent() {
         }
     })
 }
-function OnKeyUpCode() {
+function OnKeyUp() {
     var m_code=$("#code").val();
     var m_name=$("#name").val();
     var m_content=$("#content").val();
     $.ajax({
-        url:"/OnKeyUpCode",
-        type:"POST",
+        url:"/OnKeyUp",
+        type:"PUT",
         data:{
             code:m_code,
             name:m_name,
@@ -40,52 +40,7 @@ function OnKeyUpCode() {
         },
         dataType:"json",
         success: function (response) {
-            $("#lectureCode").html(response.code);
-        },
-        error: function (error) {
-            alert("Error while posting: " + error.status + ":" + error.statusText);
-        }
-    })
-}
-function OnKeyUpName() {
-    var m_code=$("#code").val();
-    var m_name=$("#name").val();
-    var m_content=$("#content").val();
-    $.ajax({
-        url:"/OnKeyUpName",
-        type:"POST",
-        data:{
-            code:m_code,
-            name:m_name,
-            content:m_content,
-        },
-        dataType:"json",
-        success: function (response) {
-            $("#lectureName").html(response.name);
-        },
-        error: function (error) {
-            alert("Error while posting: " + error.status + ":" + error.statusText);
-        }
-    })
-}
-function OnKeyUpContent() {
-    var m_code=$("#code").val();
-    var m_name=$("#name").val();
-    var m_content=$("#content").val();
-    $.ajax({
-        url:"/OnKeyUpCodeContent",
-        type:"POST",
-        data:{
-            code:m_code,
-            name:m_name,
-            content:m_content,
-        },
-        dataType:"json",
-        success: function () {
-            $("#lectureContent").html(response.content);
-        },
-        error: function (error) {
-            alert("Error while posting: " + error.status + ":" + error.statusText);
+            
         }
     })
 }
@@ -103,6 +58,7 @@ function ShowJSON() {
         }
     })
 }
+
 function ShowXML() {
     $.ajax({
         url:"/GetXML",
