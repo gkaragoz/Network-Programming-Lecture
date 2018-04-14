@@ -23,10 +23,13 @@ function FillContent() {
         },
         error: function (err) {
             alert("Error while posting: " + err.status + ":" + err.statusText);
+            $("#code").val("UNKNOWN");
+            $("#name").val("UNKNOWN");
+            $("#content").val("UNKNOWN");
         }
     })
 }
-function OnKeyUp() {
+function OnKeyUpCode() {
     var m_code=$("#code").val();
     var m_name=$("#name").val();
     var m_content=$("#content").val();
@@ -85,7 +88,7 @@ function OnKeyUpContent() {
         },
         dataType:"json",
         success: function () {
-
+            $("#lectureContent").html(response.content);
         },
         error: function (error) {
             alert("Error while posting: " + error.status + ":" + error.statusText);

@@ -68,7 +68,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">Dersin Kodu:</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Kod giriniz" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="code" onkeyup="OnKeyUpCode()">
                         </div>
                 
                         
@@ -76,7 +76,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Dersin Adı:</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="İsim giriniz" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="name" onkeyup="OnKeyUpName()">
                         </div>
                 
                             
@@ -84,15 +84,15 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Dersin İçeriği:</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="İçerik giriniz" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="content" onkeyup="OnKeyUpContent()">
                         </div>
                 
-                        <button type="button" class="btn btn-primary btn-sm">XML Göster</button>
-                        <button type="button" class="btn btn-primary btn-sm">JSON Göster</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="ShowXML()">XML Göster</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="ShowJSON()">JSON Göster</button>
                 
                         <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Kodlanmış Veri</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="encodedData">Kodlanmış Veri</label>
+                                <textarea class="form-control" id="encodedData" rows="3"></textarea>
                         </div>        
                 </div>
         </div>
