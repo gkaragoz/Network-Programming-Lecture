@@ -10,11 +10,8 @@ function ShowLectureContent() {
 
 function FillContent() {
     $.ajax({
-        url:"/",
-        type:"POST",
-        data:{
-            type:"fill"
-        },
+        url:"/FillContent",
+        type:"GET",
         dataType:"json",
         success: function (data) {
            $("#code").val(data.code);
@@ -34,10 +31,9 @@ function OnKeyUpCode() {
     var m_name=$("#name").val();
     var m_content=$("#content").val();
     $.ajax({
-        url:"/",
+        url:"/OnKeyUpCode",
         type:"POST",
         data:{
-            type:"code",
             code:m_code,
             name:m_name,
             content:m_content,
@@ -56,10 +52,9 @@ function OnKeyUpName() {
     var m_name=$("#name").val();
     var m_content=$("#content").val();
     $.ajax({
-        url:"/",
+        url:"/OnKeyUpName",
         type:"POST",
         data:{
-            type:"name",
             code:m_code,
             name:m_name,
             content:m_content,
@@ -78,10 +73,9 @@ function OnKeyUpContent() {
     var m_name=$("#name").val();
     var m_content=$("#content").val();
     $.ajax({
-        url:"/",
+        url:"/OnKeyUpCodeContent",
         type:"POST",
         data:{
-            type:"content",
             code:m_code,
             name:m_name,
             content:m_content,
@@ -98,11 +92,8 @@ function OnKeyUpContent() {
 
 function ShowJSON() {
     $.ajax({
-        url:"/",
-        type:"POST",
-        data:{
-            tip:"JSON"
-        },
+        url:"/GetJSON",
+        type:"GET",
         dataType:"json",
         success: function (response) {
             $("#encodedData").html(JSON.stringify(response, null, 2));
@@ -114,11 +105,8 @@ function ShowJSON() {
 }
 function ShowXML() {
     $.ajax({
-        url:"/",
-        type:"POST",
-        data:{
-            tip:"XML"
-        },
+        url:"/GetXML",
+        type:"GET",
         dataType:"xml",
         success: function (response) {
             var xmlText = new XMLSerializer().serializeToString(response);
