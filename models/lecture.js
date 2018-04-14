@@ -7,7 +7,7 @@ const lectureSchema = mongoose.Schema({
 	content:String
 });
 
-const Lecture = module.exports = mongoose.model('Lecture', lectureSchema,'lecture');
+const Lecture = module.exports = mongoose.model('Lecture', lectureSchema,'lectures');
 
 // Get Lecture
 module.exports.getLecture = (callback) => {
