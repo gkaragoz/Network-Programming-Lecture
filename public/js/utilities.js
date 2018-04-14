@@ -60,10 +60,8 @@ function ShowXML() {
     $.ajax({
         url:"/GetXML",
         type:"GET",
-        dataType:"xml",
         success: function (response) {
-            var xmlText = new XMLSerializer().serializeToString(response);
-            $("#encodedData").val(xmlText);
+            $("#encodedData").val(response);
         }
     })
 }

@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 var path = require('path');
 var lectureID = -1;
 var studentID = "g140910034";
+var builder = require('xmlbuilder');
 
 app.use("/",express.static(path.join(__dirname, 'public')));
 app.use("/css",express.static(path.join(__dirname, '/css')));
@@ -45,8 +46,19 @@ app.get('/GetXML', (req, res) => {
 		if(err) throw err;
 
 		//CONVERT JSON to XML
+		var data = {
+			no: lectureID,
+			code: lecture[0].code,
+			name: lecture[0].name,
+			content: lecture[0].content
+		}
 
-		res.send(lecture);
+		var xml = builder.create('dersler')
+			.ele('bilgiler')
+			.ele(data)
+			.end({ pretty: true});
+
+		res.send(xml);
 	});
 });
 

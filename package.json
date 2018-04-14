@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gkaragoz/Network-Programming-Lecture#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "mongoose": "^5.0.13"
+    "mongoose": "^5.0.13",
+    "xmlbuilder": "^9.0.7"
   }
 }
