@@ -47,14 +47,15 @@ app.get('/GetXML', (req, res) => {
 
 		//CONVERT JSON to XML
 		var data = {
+			id: lecture._id,
 			no: lectureID,
-			code: lecture[0].code,
-			name: lecture[0].name,
-			content: lecture[0].content
+			code: lecture.code,
+			name: lecture.name,
+			content: lecture.content
 		}
 
-		var xml = builder.create('dersler')
-			.ele('bilgiler')
+		var xml = builder.create('lectures')
+			.ele('infos')
 			.ele(data)
 			.end({ pretty: true});
 

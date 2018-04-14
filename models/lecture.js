@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 // Lecture Schema
 const lectureSchema = mongoose.Schema({
+	_id:String,
 	code:String,
 	name:String,
 	content:String
@@ -11,7 +12,7 @@ const Lecture = module.exports = mongoose.model('Lecture', lectureSchema,'lectur
 
 // Get Lecture
 module.exports.getLecture = (id, callback) => {
-	Lecture.find({no: id}, callback);
+	Lecture.findOne({no: id}, callback);
 }
 
 // Update a Lecture

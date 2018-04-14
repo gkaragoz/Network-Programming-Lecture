@@ -14,9 +14,9 @@ function FillContent() {
         type:"GET",
         dataType:"json",
         success: function (data) {
-           $("#code").val(data[0].code);
-           $("#name").val(data[0].name);
-           $("#content").val(data[0].content);
+           $("#code").val(data.code);
+           $("#name").val(data.name);
+           $("#content").val(data.content);
         },
         error: function (err) {
             alert("Error while posting: " + err.status + ":" + err.statusText);
