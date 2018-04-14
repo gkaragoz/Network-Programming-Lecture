@@ -13,7 +13,7 @@ function FillContent() {
         url:"/",
         type:"POST",
         data:{
-            tip:"choose"
+            type:"fill"
         },
         dataType:"json",
         success: function (data) {
