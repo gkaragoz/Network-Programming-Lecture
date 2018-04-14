@@ -1,20 +1,28 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+var path = require('path');
 
-MongoClient.connect('mongodb://127.0.0.1:27017', (err, client) => {
-    if (err) return console.log(err)
-    db = client.db('networkprogramming')
-    app.listen(3000, () => {
-      console.log('listening on 3000')
-    })
-})
+app.use("/",express.static(path.join(__dirname, 'public')));
+app.use("/css",express.static(path.join(__dirname, '/css')));
+app.use("/js",express.static(path.join(__dirname, '/js')));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.sendfile(__dirname + "/index.html")
+mongoose.connect('mongodb://localhost/networkprogramming');
+var db = mongoose.connection;
 
-    db.collection('lectures').find().toArray(function(err, results) {
-        if (err) return console.log(err)
-        console.log(results)
-    })
-})
+Lecture = require('./models/lecture');
+
+app.get('/lecture', (req, res) => {
+	Lecture.getLecture((err, lecture) => {
+		if(err){
+			throw err;
+        }
+		res.send(lecture);
+	});
+});
+
+app.listen(3000);
+console.log("Server online at port:3000");
